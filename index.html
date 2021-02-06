@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<!-- website header - typically the title -->
+	<head>
+	  <meta charset="utf-8">
+
+	  <!-- Change the title `Simple website` to say what you want - it shows up when someone google's the site -->
+	  <title>She Innovates Hackathon Workshop</title>
+
+	  <!-- Don't change the code line immediately below -->
+	  <link rel="stylesheet" href="main.css">
+	</head>
+	<!-- end of header -->
+
+	<!-- body of website -->
+	<body class="light-theme">
+		<!-- this is a header -->
+	    <h1>WiCS Workshop Tasks</h1>
+
+	    <!-- this is a paragraph -->
+	    <p id="msg">WiCS is presenting this dynamic website workshop to help prepare you for the upcoming She Innovates Hackathon. Below you can find a list of topics that we will cover in this workshop! </p>
+
+	    <!-- beginning of the list -->
+	    <ul>
+	    	<!-- this bullet point will be a square -->
+	      	<li class="list">Using GitHub for collaborative coding and website hosting</li>
+
+	      	<!-- this bullet point will be a circle be we used `.list` in the CSS file -->
+	      	<li>Using HTML/CSS/JavaScript to build a dynamic website</li>
+
+	    </ul>
+
+		<!-- authorize div -->
+		<div >
+			<script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+			<div id="appleid-signin" data-color="black" data-border="true" data-type="sign in"></div>
+			<script type="text/javascript">
+				AppleID.auth.init({
+					clientId : '[CLIENT_ID]',
+					scope : '[SCOPES]',
+					redirectURI : '[REDIRECT_URI]',
+					state : '[STATE]',
+					nonce : '[NONCE]',
+					usePopup : true //or false defaults to false
+				});
+			</script>
+		</div>
+
+	    <!-- button div -->
+	    <div>
+  			<!-- add a button here -->
+  			<button class="btn">Dark</button>
+		</div>
+
+		<p id="formbtn"> Hakathon Team Name Idea: </p>
+
+		<!-- Simple JavaScript form to modify our HTML -->
+		<input id="teamname">
+		<button type="btn2" onclick="myFunction()">Submit</button>
+
+		<button onclick="authorize()">authorize</button>
+
+
+	    <script src="app.js"></script>
+		<!--<script src="https://js-cdn.music.apple.com/musickit/v1/musickit.js"></script>-->
+		<script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+
+	    <noscript>You need to enable JavaScript to view the full site.</noscript>
+	    <!-- end of the list -->
+  	</body>
+  	<!-- end of body -->
+</html>

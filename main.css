@@ -1,0 +1,71 @@
+
+/*Use hex values to change the colors of the webpage*/
+:root {
+  --purple: #4b0082;
+  --white: #ffffff;
+  --pink: #ffcccc;
+}
+
+body {
+    font-family: monospace;
+}
+
+ul {
+    font-family: helvetica;
+}
+
+li {
+  list-style: circle;
+}
+
+.list {
+  list-style: square;
+}
+
+#msg {
+  font-family: monospace;
+}
+
+.light-theme {
+  --bg: var(--pink);
+  --fontColor: var(--purple);
+  --btnBg: var(--purple);
+  --btnFontColor: var(--white);
+}
+
+.dark-theme {
+  --bg: var(--purple);
+  --fontColor: var(--pink);
+  --btnBg: var(--white);
+  --btnFontColor: var(--purple);
+}
+
+* {
+  color: var(--fontColor);
+  font-family: helvetica;
+}
+
+body {
+    background: var(--bg);
+}
+
+.btn {
+  color: var(--btnFontColor);
+  background-color: var(--btnBg);
+}
+
+/*adjust the location of the button on your webpage*/
+.btn {
+  position: absolute;
+  top: 20px;
+  left: 450px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: none;
+  color: var(--btnFontColor);
+  background-color: var(--btnBg);
+}
+
+.btn:focus { outline-style: none; }
+

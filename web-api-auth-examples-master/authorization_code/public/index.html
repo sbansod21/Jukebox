@@ -8,8 +8,6 @@ body {
   background-attachment: fixed;
   background-size: 100% 100%;
   opacity: 0.7;
-
-
 }
 </style> 
 <meta charset="UTF-8">
@@ -30,6 +28,109 @@ body {
 #stopfloat{
 clear:both;
 }
+
+.test {
+  box-shadow:inset 0px 6px 7px 0px #ecf007;
+  background:linear-gradient(to bottom, #ecf007 5%, #b8bb11 100%);
+  background-color:#ecf007;
+  border-radius:10px;
+  border:1px solid #0b0e07;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:'Times New Roman', Times, serif;
+  font-size:20px;
+  padding:14px 36px;
+  text-decoration:none;
+}
+.test:hover {
+  background:linear-gradient(to bottom, #b8bb11 5%, #ecf007 100%);
+  background-color:#b8bb11;
+}
+ 
+ .art {
+  box-shadow:inset 0px 6px 7px 0px #17ca10;
+  background:linear-gradient(to bottom, #17ca10 5%, #0d750a 100%);
+  background-color:#17ca10;
+  border-radius:10px;
+  border:1px solid #0b0e07;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family: 'Times New Roman', Times, serif;
+  font-size:20px;
+  padding:14px 36px;
+  text-decoration:none;
+}
+.art:hover {
+  background:linear-gradient(to bottom, #0d750a 5%, #17ca10 100%);
+  background-color:#0d750a;
+}
+ 
+ 
+ .write {
+  box-shadow:inset 0px 6px 7px 0px #e03a9b;
+  background:linear-gradient(to bottom, #e03a9b 5%, #971276 100%);
+  background-color:#e03a9b;
+  border-radius:10px;
+  border:1px solid #0b0e07;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:'Times New Roman', Times, serif;
+  font-size:20px;
+  padding:14px 36px;
+  text-decoration:none;
+}
+.write:hover {
+  background:linear-gradient(to bottom, #971276 5%, #e03a9b 100%);
+  background-color:#971276;
+}
+ 
+ 
+ .read {
+  box-shadow:inset 0px 6px 7px 0px #b215c0;
+  background:linear-gradient(to bottom, #b215c0 5%, #620c69 100%);
+  background-color:#b215c0;
+  border-radius:10px;
+  border:1px solid #0b0e07;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:'Times New Roman', Times, serif;
+  font-size:20px;
+  padding:14px 36px;
+  text-decoration:none;
+}
+.read:hover {
+  background:linear-gradient(to bottom, #620c69 5%, #b215c0 100%);
+  background-color:#620c69;
+}
+ 
+ .code {
+  box-shadow:inset 0px 6px 7px 0px #29bbff;
+  background:linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
+  background-color:#2dabf9;
+  border-radius:10px;
+  border:1px solid #0b0e07;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:'Times New Roman', Times, serif;
+  font-size:20px;
+  padding:14px 36px;
+  text-decoration:none;
+}
+.code:hover {
+  background:linear-gradient(to bottom, #0688fa 5%, #2dabf9 100%);
+  background-color:#0688fa;
+}
+.myButton:active {
+  position:relative;
+  top:1px;
+}
+
+
 
 h1{
 text-shadow: 3px 2px Grey;
@@ -112,14 +213,8 @@ html {
   width: 400px;
 }
 }
-
-
-
-
-
-
-
 </style> 
+<script src="functions.js"></script>
 </head> 
 <body> 
 
@@ -289,19 +384,33 @@ html {
 <h2 style= "color:white"><center>Choose your Activity:</center></h1>
 
 
-<center><select id="activities"></center>
-  <option value="coding">Coding</option>
-  <option value="reading">Reading</option>
-  <option value="writing">Writing</option>
-  <option value="art">Art</option>
-</select>
+  <center>
+  
+    <button onclick="getPlaylist('coding')" class="code myButton">Coding</a>
+    <button onclick="getPlaylist('reading')" class="read myButton">Reading</a>
+    <button onclick="getPlaylist('writing')" class="write myButton">Writing</a>
+    <button onclick="getPlaylist('art')" class="art myButton">Art</a>
+    <button onclick="getPlaylist('testing')" class="test myButton">Testing</a>
+    </center>
 </p>
+
+<center>
+  <div id="test">
+  </div>
+</center>
 
 
 
 
 
 </div>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+
 </body>
 </div>
 

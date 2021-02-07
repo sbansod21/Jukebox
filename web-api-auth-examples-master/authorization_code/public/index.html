@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <html lang="en">
+ <head>
+<style>    
+body {
+  background-image: url('img/Logo.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  opacity: 0.7;
+
+
+}
+</style> 
+<meta charset="UTF-8">
+<title>JUKEBOX</title> 
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style type="text/css">
+
+#page {
+ width:800px;
+ margin:0 auto;
+ border-radius: 15px;
+  background: #c1dae8;
+  padding: 20px;
+ }
+
+
+#stopfloat{
+clear:both;
+}
+
+h1{
+text-shadow: 3px 2px Grey;
+}
+
+h3 {
+text-shadow: 3px 2px Grey;
+;
+}
+
+p{
+font-family: "Times New Roman";
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+
+.button:hover {
+  background-color: #555;
+}
+
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: right;
+  color: #f2ff03;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 23px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+
+#activities{
+  width: 400px;
+}
+}
+
+
+
+
+
+
+
+</style> 
+</head> 
+<body> 
+
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+<div class="w3-top w3-bar w3-white w3-wide w3-padding w3-card">
+<a href="JB.html" class="w3-bar-item w3-button"><b>JUKEBOX</b></a>
+
+
+
+<!-- Float links to the right. Hide them on small screens -->
+<div class="w3-right w3-hide-small">
+<a href="AboutUs.html"class="w3-bar-item w3-button" >ABOUT US</a>
+<a href="/login" class="w3-bar-item w3-button">LOGIN WITH SPOTIFY</a>
+</div>
+<div id="loggedin">
+  <div id="user-profile">
+  </div>
+  <div id="oauth">
+  </div>
+  <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
+</div>
+
+
+</div>
+
+</div>
+
+  </div>
+</div>
+
+</style>
+</head>
+<body>
+
+
+
+
+<div id="dropdown">
+
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+
+<p>
+<h1 style= "color:white"><center>Music Compiled for You</center></h1>
+
+<body>
+  
+
+  
+  <script id="user-profile-template" type="text/x-handlebars-template">
+    <h1>Logged in as {{display_name}}</h1>
+    <div class="media">
+      <div class="pull-left">
+        <img class="media-object" width="150" src="{{images.0.url}}" />
+      </div>
+      <div class="media-body">
+        <dl class="dl-horizontal">
+          <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
+          <dt>Id</dt><dd>{{id}}</dd>
+          <dt>Email</dt><dd>{{email}}</dd>
+          <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
+          <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
+          <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
+          <dt>Country</dt><dd>{{country}}</dd>
+        </dl>
+      </div>
+    </div>
+  </script>
+  `
+
+  <script id="oauth-template" type="text/x-handlebars-template">
+    <h2>oAuth info</h2>
+    <dl class="dl-horizontal">
+      <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
+      <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}</dd>
+    </dl>
+  </script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script>
+    (function() {
+
+      /**
+       * Obtains parameters from the hash of the URL
+       * @return Object
+       */
+      function getHashParams() {
+        var hashParams = {};
+        var e, r = /([^&;=]+)=?([^&;]*)/g,
+            q = window.location.hash.substring(1);
+        while ( e = r.exec(q)) {
+           hashParams[e[1]] = decodeURIComponent(e[2]);
+        }
+        return hashParams;
+      }
+
+      var userProfileSource = document.getElementById('user-profile-template').innerHTML,
+          userProfileTemplate = Handlebars.compile(userProfileSource),
+          userProfilePlaceholder = document.getElementById('user-profile');
+
+      var oauthSource = document.getElementById('oauth-template').innerHTML,
+          oauthTemplate = Handlebars.compile(oauthSource),
+          oauthPlaceholder = document.getElementById('oauth');
+
+      var params = getHashParams();
+
+      var access_token = params.access_token,
+          refresh_token = params.refresh_token,
+          error = params.error;
+
+      if (error) {
+        alert('There was an error during the authentication');
+      } else {
+        if (access_token) {
+          // render oauth info
+          oauthPlaceholder.innerHTML = oauthTemplate({
+            access_token: access_token,
+            refresh_token: refresh_token
+          });
+
+          $.ajax({
+              url: 'https://api.spotify.com/v1/me',
+              headers: {
+                'Authorization': 'Bearer ' + access_token
+              },
+              success: function(response) {
+                userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+
+                $('#login').hide();
+                $('#loggedin').show();
+              }
+          });
+        } else {
+            // render initial screen
+            $('#login').show();
+            $('#loggedin').hide();
+        }
+
+        document.getElementById('obtain-new-token').addEventListener('click', function() {
+          $.ajax({
+            url: '/refresh_token',
+            data: {
+              'refresh_token': refresh_token
+            }
+          }).done(function(data) {
+            access_token = data.access_token;
+            oauthPlaceholder.innerHTML = oauthTemplate({
+              access_token: access_token,
+              refresh_token: refresh_token
+            });
+          });
+        }, false);
+      }
+    })();
+  </script>
+
+
+<h2 style= "color:white"><center>Choose your Activity:</center></h1>
+
+
+<center><select id="activities"></center>
+  <option value="coding">Coding</option>
+  <option value="reading">Reading</option>
+  <option value="writing">Writing</option>
+  <option value="art">Art</option>
+</select>
+</p>
+
+
+
+
+
+</div>
+</body>
+</div>
+
+
+
+
+		
+
